@@ -38,7 +38,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     // continue if image URL is existent
     else {
       // get filtered image using provided function
-      const filteredpath = await filterImageFromUrl(image_url);
+      const filteredpath = await filterImageFromURL(image_url);
       // if no filtered image, send 404 not found with error message
       if (!filteredpath) {
         return res.status(404).send('Filtered image was not found.');
