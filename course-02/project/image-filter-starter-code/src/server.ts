@@ -29,6 +29,28 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   /**************************************************************************** */
 
+  app.get("/filteredImage", async(req, res) => {
+    let {image_url} = req.query.image_url;
+    // check for image URL, send error message and 400 code if not
+    if (!image_url) {
+      return res.status(400).send('No image URL included. Image URL must be included.');
+    }
+    // continue if image URL is existent
+    else {
+      // get filtered image using provided function
+      const filteredpath = await filterImageFromUrl(image_url);
+      // if no filtered image, send 404 not found with error message
+      if (!filteredpath) {
+        return res.status(404).send('Filtered image was not found.');
+      }
+      // if image url and image are found, send back the image and a success code 200
+      else {
+        res.status(200).sendFile(filteredpath);
+        res.on("finish", () => deleteLocalFiles([image_url]);
+      }
+    }
+  }
+
   //! END @TODO1
   
   // Root Endpoint
