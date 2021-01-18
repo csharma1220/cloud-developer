@@ -49,7 +49,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
         res.on("finish", () => deleteLocalFiles([image_url]));
       }
     }
-  }
+  } )
 
   //! END @TODO1
   
